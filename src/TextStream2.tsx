@@ -123,54 +123,51 @@ StreamingOpenAICompletionsProps
     };
 
     return (
-        <div>
-        <div className="modelTitle">
-            {props.modelName}
-        </div>
-        <div className="textCompletionContainer">
+        <div className='fullLLMContainer'>
+            <div className="modelTitle">
+                Model: {props.modelName}
+            </div>
+            <div className="textCompletionContainer">
+                <div>
+                    <div >
+                        <div id="resultContainer">
+                            <ReactMarkdown
+                                className="whitespace-pre-line"
+                                components={{
+                                    code({node, className, children, ...props}) {
+                                        const match = /language-(\w+)/.exec(className || '')
+                                        return match ? (
+                                                // @ts-ignore
+                                                <SyntaxHighlighter style={dark} language={match[1]} PreTag="div" {...props}>
+                                                    {String(children).replace(/\n$/, '')}
+                                                </SyntaxHighlighter>
+                                            ) : (
+                                                <code className={className} {...props}>
+                                                    {children}
+                                                </code>
+                                            )
+                                    }
+                                }}
+                            >
+                                {result}
+                            </ReactMarkdown>
+                        </div>
+                        <input
+                            type="text"
+                            value={API_URL}
+                            onChange={(e) => setAPI_URL(e.target.value)}
+                            placeholder="Enter API URL..."
+                        />
+                        <input
+                            type="text"
+                            value={API_KEY}
+                            onChange={(e) => setAPI_KEY(e.target.value)}
+                            placeholder="Enter API Key..."
+                        />
 
-            <div className="bg-white text-black min-h-screen flex items-center justify-center">
-                <div className="lg:w-1/2 2xl:w-1/3 p-8 rounded-md bg-gray-100">
-                    <div id="resultContainer" className="mt-4 h-48 overflow-y-auto">
-                        <ReactMarkdown
-                            className="whitespace-pre-line"
-                            components={{
-                                code({node, className, children, ...props}) {
-                                    const match = /language-(\w+)/.exec(className || '')
-                                    return match ? (
-                                            // @ts-ignore
-                                            <SyntaxHighlighter style={dark} language={match[1]} PreTag="div" {...props}>
-                                                {String(children).replace(/\n$/, '')}
-                                            </SyntaxHighlighter>
-                                        ) : (
-                                            <code className={className} {...props}>
-                                                {children}
-                                            </code>
-                                        )
-                                }
-                            }}
-                        >
-                            {result}
-                        </ReactMarkdown>
                     </div>
-                    <input
-                        type="text"
-                        value={API_URL}
-                        onChange={(e) => setAPI_URL(e.target.value)}
-                        className="w-full px-4 py-2 rounded-md bg-gray-200 placeholder-gray-500 focus:outline-none mt-4"
-                        placeholder="Enter API URL..."
-                    />
-                    <input
-                        type="text"
-                        value={API_KEY}
-                        onChange={(e) => setAPI_KEY(e.target.value)}
-                        className="w-full px-4 py-2 rounded-md bg-gray-200 placeholder-gray-500 focus:outline-none mt-4"
-                        placeholder="Enter API Key..."
-                    />
-
                 </div>
             </div>
-        </div>
         </div>
     );
 });

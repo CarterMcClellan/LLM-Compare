@@ -45,6 +45,7 @@ function App() {
   return (
     <div className="App">
       <div className="promptSection">
+        <h1> Prompt </h1>
         <textarea
           value={prompt}
           onChange={handlePromptChange}
