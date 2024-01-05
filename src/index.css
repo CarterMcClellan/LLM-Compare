@@ -1,3 +1,7 @@
+.App {
+  align-items: center;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,69 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.textCompletionContainer {
+  margin-top: 2vh;
+  position: relative;
+  width: 30vw;
+  height: 30vh; 
+  margin-left: 3vw;
+}
+
+.textCompletionRow {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 30vh;
+}
+
+.promptSection {
+  margin-top: 10vh;
+}
+
+.textCompletionContainer {
+  overflow-y: auto; /* Keeps content scrollable */
+  display: flex;
+}
+/* Styling the scrollbar - this is optional and might not work in all browsers */
+.textCompletionContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.textCompletionContainer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 10px;
+}
+
+.promptSection textarea {
+  width: 80%; /* Full width */
+  height: auto; /* Auto-height based on content */
+  min-height: 150px; /* Minimum height */
+  overflow-y: auto; /* Scrollable */
+  margin-bottom: 1rem; /* Space before the next section */
+  padding: 10px; /* Padding inside the textarea */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.apiSection {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.apiKeyInput {
+  width: 30%;
+}
+
+.buttonSection {
+  margin-bottom: 1rem;
+}
+
+.modelName {
+  font-size: 40px;
 }
